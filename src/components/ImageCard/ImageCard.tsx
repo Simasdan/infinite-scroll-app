@@ -2,7 +2,7 @@ import styles from './imageCard.module.scss';
 
 const ImageCard = () => {
   return (
-    <div className={styles.imageCardWrapper}>ImageCard</div>
+    <div className={styles.imageCard}>ImageCard</div>
   )
 }
 
