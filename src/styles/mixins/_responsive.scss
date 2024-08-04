@@ -1,0 +1,19 @@
+@import '../variables/mediaBreakpoints.module';
+
+@mixin for-desktop-only {
+    @media (min-width: #{$min-desktop-width}px) {
+        @content;
+    }
+};
+
+@mixin for-tablet-only {
+    @media (max-width: #{$max-tablet-width}px) {
+        @content;
+    }
+};
+
+@mixin for-phone-only {
+    @media (max-width: #{$max-phone-width}px) {
+        @content;
+    }
+};
