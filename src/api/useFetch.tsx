@@ -10,7 +10,7 @@ interface FetchResult<T> {
   error: boolean;
 }
 
-function useFetch<T>(key: Key): FetchResult<T> {
+function useFetch<T>(key: Key, page: number): FetchResult<T> {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,7 +19,8 @@ function useFetch<T>(key: Key): FetchResult<T> {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${key}&gallery_id=72157722769669046&format=json&nojsoncallback=1`;
+        // const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${key}&gallery_id=72157722769669046&format=json&nojsoncallback=1&page=${page}`;
+        const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${key}&gallery_id=72157722769669046&format=json&nojsoncallback=1&per_page=9&page=${page}`;
         const response = await fetch(url);
         const responseData: T = await response.json()
         setData(responseData);
@@ -31,7 +32,7 @@ function useFetch<T>(key: Key): FetchResult<T> {
     };
 
     fetchData();
-  }, [key]);
+  }, [key, page]);
 
   return { data, loading, error };
 }

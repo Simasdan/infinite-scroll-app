@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useFetch, {Key} from '../../api/useFetch';
 import styles from './imageCardWrapper.module.scss';
 import ImageCard from '../ImageCard/ImageCard';
@@ -22,16 +22,41 @@ interface FlickrResponse {
 }
 
 const ImageCardWrapper = () => {
-  const {data, loading, error} = useFetch<FlickrResponse>(Key.API_KEY)
-  const photoArray = data?.photos.photo;
+  const [page, setPage] = useState(1);
+  const [photos, setPhotos] = useState<FlickrPhoto[]>([]);
+  const {data, loading, error} = useFetch<FlickrResponse>(Key.API_KEY, page)
 
-  useEffect(() => {
+  const loadMorePhotos = useCallback(() => {
     if (data) {
-      console.log(photoArray)
+      console.log('Loading more photos:', data.photos.photo)
+      setPhotos((prevPhotos) => {
+        const newPhotos = data.photos.photo.filter((newPhoto) => !prevPhotos.some((photo) => photo.id === newPhoto.id));
+
+        return [...prevPhotos, ...newPhotos];
+      });
     }
   }, [data])
 
-  if (loading) {
+  useEffect(() => {
+    loadMorePhotos();
+  }, [data, loadMorePhotos])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+        console.log('Reached bottom, loading more...')
+        setPage((previousPage) => previousPage + 1)
+      }
+  
+      window.addEventListener('scroll', handleScroll)
+      return () => {
+        window.removeEventListener('scroll', handleScroll)
+        console.log('Scroll event listener removed')
+      }
+    }
+  }, [])
+
+  if (loading && page === 1) {
     return <div>Loading...</div>;
   }
 
@@ -39,18 +64,19 @@ const ImageCardWrapper = () => {
     return <div>Error loading data.</div>;
   }
 
-  if (!data) {
+  if (photos.length === 0 && !loading) {
     return <div>No data available.</div>;
   }
 
   return (
     <div className={styles.imageCardWrapper}>
-      {photoArray?.map((photo) => {
+      {photos?.map((photo) => {
         const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
         return (
           <ImageCard key={photo.id} imageUrl={imageUrl} title={photo.title}/>
         )
       })}
+      {loading && <div>Loading more...</div>}
     </div>
   )
 }
