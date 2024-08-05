@@ -19,7 +19,6 @@ function useFetch<T>(key: Key, page: number): FetchResult<T> {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${key}&gallery_id=72157722769669046&format=json&nojsoncallback=1&page=${page}`;
         const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${key}&gallery_id=72157722769669046&format=json&nojsoncallback=1&per_page=9&page=${page}`;
         const response = await fetch(url);
         const responseData: T = await response.json()

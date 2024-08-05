@@ -6,4 +6,15 @@
     flex-wrap: wrap;
     gap: $spacing-S;
     padding: $spacing-S;
+    position: relative;
+
+    .loadingIndicator {
+        position: absolute;
+        bottom: $spacing-S;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: $spacing-S;
+        background-color: $color-white;
+    }
 }

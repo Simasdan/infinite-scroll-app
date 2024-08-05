@@ -28,40 +28,37 @@ const ImageCardWrapper = () => {
 
   const loadMorePhotos = useCallback(() => {
     if (data) {
-      console.log('Loading more photos:', data.photos.photo)
       setPhotos((prevPhotos) => {
         const newPhotos = data.photos.photo.filter((newPhoto) => !prevPhotos.some((photo) => photo.id === newPhoto.id));
-
         return [...prevPhotos, ...newPhotos];
       });
     }
-  }, [data])
+  }, [data]);
 
   useEffect(() => {
     loadMorePhotos();
-  }, [data, loadMorePhotos])
+  }, [data, loadMorePhotos]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-        console.log('Reached bottom, loading more...')
-        setPage((previousPage) => previousPage + 1)
+        setPage((prevPage) => prevPage + 1);
       }
-  
-      window.addEventListener('scroll', handleScroll)
-      return () => {
-        window.removeEventListener('scroll', handleScroll)
-        console.log('Scroll event listener removed')
-      }
-    }
-  }, [])
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   if (loading && page === 1) {
     return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error loading data.</div>;
+    return <div>Error loading the data.</div>;
   }
 
   if (photos.length === 0 && !loading) {
@@ -76,7 +73,7 @@ const ImageCardWrapper = () => {
           <ImageCard key={photo.id} imageUrl={imageUrl} title={photo.title}/>
         )
       })}
-      {loading && <div>Loading more...</div>}
+      {loading && <div className={styles.loadingIndicator}>Loading more...</div>}
     </div>
   )
 }
