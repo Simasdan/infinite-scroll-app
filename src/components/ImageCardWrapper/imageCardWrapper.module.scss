@@ -1,1 +1,9 @@
 @import '../../styles/tools';
+
+.imageCardWrapper {
+    @include flexbox-centered;
+
+    flex-wrap: wrap;
+    gap: $spacing-S;
+    padding: $spacing-S;
+}

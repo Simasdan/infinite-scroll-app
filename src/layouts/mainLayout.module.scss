@@ -1,11 +1,12 @@
 @import '../styles/tools';
 
 .container {
-    margin: 2rem auto;
-    width: 132rem;
+    margin: $spacing-S auto;
+    max-width: 132rem;
+    width: 100%;
 
     .mainLayoutWrapper {
-        
+        text-align: center;
     }
 }
 

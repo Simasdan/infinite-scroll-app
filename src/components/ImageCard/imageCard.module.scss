@@ -1,1 +1,58 @@
 @import '../../styles/tools';
+
+.cardWrapper {
+    position: relative;
+
+    .imageCard {
+        width: 35rem;
+        height: 30rem;
+        border-radius: $border-radius-small;
+        overflow: hidden;
+        border: 0.1rem solid $color-grey-1;
+        box-shadow: $box-shadow-img;
+    
+        @include flexbox-centered;
+    
+        .image {
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            display: block;
+            transition: $transition-ease;
+            backface-visibility: hidden;
+        }
+    }
+    
+    .hoveredImageCard {
+        position: absolute;
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+        background: transparent;
+
+        h3 {
+            @include title-M;
+
+            color: $color-white;
+            margin-bottom: $spacing-M;
+        }
+
+        button {
+            @include button-M;
+
+            border-radius: $border-radius-button;
+            padding: $spacing-XXS $spacing-XS;
+            color: $color-white;
+            border: 0.1rem solid $color-white;
+        }
+    }
+
+    &:hover .imageCard {
+        opacity: 0.3;
+    }
+
+    &:hover .hoveredImageCard{
+        opacity: 1;
+    }
+}

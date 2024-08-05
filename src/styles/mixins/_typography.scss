@@ -4,3 +4,17 @@
     line-height: 4rem;
     letter-spacing: 0;
 }
+
+@mixin title-M {
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    letter-spacing: 0;
+}
+
+@mixin button-M {
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    letter-spacing: 0;
+}

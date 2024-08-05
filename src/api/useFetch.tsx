@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-enum Endpoint {
-
+export enum Key {
+  API_KEY = '88b3f29b4e0276a374f0969df44c5025'
 }
 
 interface FetchResult<T> {
@@ -10,7 +10,7 @@ interface FetchResult<T> {
   error: boolean;
 }
 
-function useFetch<T>(endpoint: Endpoint, id?: string): FetchResult<T> {
+function useFetch<T>(key: Key): FetchResult<T> {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,7 +19,7 @@ function useFetch<T>(endpoint: Endpoint, id?: string): FetchResult<T> {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = `https://lunchapp-backend-production.up.railway.app/${endpoint}${id ? `/${id}` : ''}`;
+        const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${key}&gallery_id=72157722769669046&format=json&nojsoncallback=1`;
         const response = await fetch(url);
         const responseData: T = await response.json()
         setData(responseData);
@@ -31,7 +31,7 @@ function useFetch<T>(endpoint: Endpoint, id?: string): FetchResult<T> {
     };
 
     fetchData();
-  }, [endpoint]);
+  }, [key]);
 
   return { data, loading, error };
 }
