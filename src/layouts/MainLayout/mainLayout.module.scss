@@ -7,6 +7,12 @@
 
     .mainLayoutWrapper {
         text-align: center;
+
+        h1 {
+            @include headline-L;
+
+            color: $color-primary1;
+        }
     }
 }
 

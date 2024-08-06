@@ -45,6 +45,11 @@
             padding: $spacing-XXS $spacing-XS;
             color: $color-white;
             border: 0.1rem solid $color-white;
+
+            &:hover {
+                color: $color-primary2;
+                border: 0.1rem solid $color-primary2;
+            }
         }
     }
 
