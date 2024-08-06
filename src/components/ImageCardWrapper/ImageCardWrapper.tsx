@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import useFetch, {Key} from '../../api/useFetch';
+import useFetch, { Key } from '../../api/useFetch';
 import styles from './imageCardWrapper.module.scss';
 import ImageCard from '../ImageCard/ImageCard';
 
@@ -24,7 +24,7 @@ interface FlickrResponse {
 const ImageCardWrapper = () => {
   const [page, setPage] = useState(1);
   const [photos, setPhotos] = useState<FlickrPhoto[]>([]);
-  const {data, loading, error} = useFetch<FlickrResponse>(Key.API_KEY, page)
+  const { data, loading, error } = useFetch<FlickrResponse>(Key.API_KEY, page)
 
   const loadMorePhotos = useCallback(() => {
     if (data) {
@@ -47,14 +47,14 @@ const ImageCardWrapper = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   if (loading && page === 1) {
-    return <div>Loading...</div>;
+    return <div className={styles.loader}></div>;
   }
 
   if (error) {
@@ -70,10 +70,12 @@ const ImageCardWrapper = () => {
       {photos?.map((photo) => {
         const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
         return (
-          <ImageCard key={photo.id} imageUrl={imageUrl} title={photo.title}/>
+          <ImageCard key={photo.id} imageUrl={imageUrl} title={photo.title} />
         )
       })}
-      {loading && <div className={styles.loadingIndicator}>Loading more...</div>}
+      {loading && <div className={styles.loadingIndicator}>
+        <div className={styles.loader}></div>
+      </div>}
     </div>
   )
 }

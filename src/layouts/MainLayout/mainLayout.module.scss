@@ -6,6 +6,9 @@
     width: 100%;
 
     .mainLayoutWrapper {
+        @include flexbox-centered;
+        
+        flex-direction: column;
         text-align: center;
 
         h1 {

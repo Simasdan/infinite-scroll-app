@@ -1,20 +1,47 @@
 @import '../../styles/tools';
 
 .imageCardWrapper {
+  @include flexbox-centered;
+
+  flex-wrap: wrap;
+  gap: $spacing-S;
+  padding: $spacing-S;
+  position: relative;
+
+  .loadingIndicator {
+    position: absolute;
+    bottom: $spacing-S;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: $spacing-XXS;
+    background-color: $color-white;
+    border-radius: $border-radius-button;
+
     @include flexbox-centered;
+  }
+}
 
-    flex-wrap: wrap;
-    gap: $spacing-S;
-    padding: $spacing-S;
-    position: relative;
+.loader {
+  margin: $spacing-S 0;
+  align-items: center;
+  width: 5rem;
+  padding: 0.8rem;
+  aspect-ratio: 1;
+  border-radius: $border-radius-loader;
+  background: $color-primary1;
+  --_m:
+    conic-gradient(#0000 10%, #000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
 
-    .loadingIndicator {
-        position: absolute;
-        bottom: $spacing-S;
-        left: 0;
-        right: 0;
-        text-align: center;
-        padding: $spacing-S;
-        background-color: $color-white;
-    }
+@keyframes l3 {
+  to {
+    transform: rotate(1turn)
+  }
 }
