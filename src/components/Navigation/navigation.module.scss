@@ -1,0 +1,23 @@
+@import '../../styles/tools';
+
+.navigationWrapper {
+    padding: $spacing-XS;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-S;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+
+    a {
+        text-decoration: none;
+        color: $color-primary1;
+
+        @include title-M;
+
+        &:hover{
+            color: $color-primary2;
+        }
+    }
+}

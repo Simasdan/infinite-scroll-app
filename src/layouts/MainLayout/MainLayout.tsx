@@ -1,4 +1,4 @@
-import ImageCardWrapper from '../components/ImageCardWrapper/ImageCardWrapper';
+import ImageCardWrapper from '../../components/ImageCardWrapper/ImageCardWrapper';
 import styles from './mainLayout.module.scss';
 
 const mainLayout = () => {

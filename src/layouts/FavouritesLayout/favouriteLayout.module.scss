@@ -1,0 +1,11 @@
+@import '../../styles/tools';
+
+.container {
+    margin: $spacing-S auto;
+    max-width: 132rem;
+    width: 100%;
+
+    .favouriteLayoutWrapper {
+        text-align: center;
+    }
+}
