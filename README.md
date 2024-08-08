@@ -1,6 +1,6 @@
 # infinite-scroll-app
 
-This is an infinite scroll application developed using React and TypeScript for the Vinted Academy admission process. The app fetches data from the Flickr API through a custom useFetch hook (based on fetch). It features two routes configured without using react-router-dom: the main route for infinite scrolling through hotos and the favourites route.
+This is an infinite scroll application developed using React, TypeScript and SCSS modules for the Vinted Academy admission process. The app fetches data from the Flickr API through a custom useFetch hook (based on fetch). It features two routes configured without using react-router-dom: the main route for infinite scrolling through hotos and the favourites route.
 
 The infinite scroll route initially loads 9 photos. Each photo includes a hover state that displays the image title and a button to add the photo to favourites. As the user scrolls to the bottom, a loading animation appears while additional photos are loaded in batches of 9.
 
