@@ -7,5 +7,25 @@
 
     .favouriteLayoutWrapper {
         text-align: center;
+
+        h1 {
+            @include headline-L;
+
+            color: $color-primary1;
+        }
+
+        .favouriteCards {
+            @include flexbox-centered;
+
+            flex-wrap: wrap;
+            gap: $spacing-S;
+            padding: $spacing-S;
+
+            p {
+                @include title-M;
+
+                color: $color-primary1;
+            }
+        }
     }
 }

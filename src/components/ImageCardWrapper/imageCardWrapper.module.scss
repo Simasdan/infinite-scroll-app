@@ -17,6 +17,7 @@
     padding: $spacing-XXS;
     background-color: $color-white;
     border-radius: $border-radius-button;
+    z-index: 100;
 
     @include flexbox-centered;
   }
