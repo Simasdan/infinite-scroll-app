@@ -45,4 +45,13 @@ describe('handleFavourite', () => {
         expect(setFavourites).toHaveBeenCalledWith([...favouriteImages, mockPhoto]);
         expect(storageMock.setItem).toHaveBeenCalledWith('favourites', JSON.stringify([...favouriteImages, mockPhoto]));
     })
+
+    it('should remove a photo from the favourites if it is already favoured', () => {
+        const updatedFavourites = [...favouriteImages, mockPhoto];
+    
+        handleFavourite(mockPhoto, updatedFavourites, setFavourites, storageMock);
+    
+        expect(setFavourites).toHaveBeenCalledWith(favouriteImages);
+        expect(storageMock.setItem).toHaveBeenCalledWith('favourites', JSON.stringify(favouriteImages));
+      });
 })
