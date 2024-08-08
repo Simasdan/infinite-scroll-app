@@ -3,7 +3,7 @@ import useFetch, { Key } from '../../api/useFetch';
 import styles from './imageCardWrapper.module.scss';
 import ImageCard from '../ImageCard/ImageCard';
 
-interface FlickrPhoto {
+export interface FlickrPhoto {
   id: string;
   owner: string;
   secret: string;
