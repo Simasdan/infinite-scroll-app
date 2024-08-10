@@ -36,21 +36,59 @@ const ImageCardWrapper = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    loadMorePhotos();
+// Adjustment for scroll on mobile devices
+const throttle = (func: (...args: any[]) => void, limit: number) => {
+  let inThrottle: boolean;
+  return (...args: any[]) => {
+    if (!inThrottle) {
+      func(...args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+};
+// Adjustment for scroll on mobile devices
 
+  // useEffect(() => {
+  //   loadMorePhotos();
+
+  //   const handleScroll = () => {
+  //     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+  //       setPage((prevPage) => prevPage + 1);
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [data, loadMorePhotos]);
+
+  useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+      const buffer = 200;
+      const scrollPosition = window.scrollY + window.innerHeight + buffer;
+      const bottomPosition = document.documentElement.scrollHeight;
+  
+      if (scrollPosition >= bottomPosition) {
         setPage((prevPage) => prevPage + 1);
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
-
+  
+    const throttledHandleScroll = throttle(handleScroll, 200);
+  
+    window.addEventListener('scroll', throttledHandleScroll);
+  
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', throttledHandleScroll);
     };
   }, [data, loadMorePhotos]);
+
+  useEffect(() => {
+    loadMorePhotos();
+  }, [data, loadMorePhotos]);
+// Adjustment for scroll on mobile devices
 
   useEffect(() => {
     const storedFavourites = JSON.parse(localStorage.getItem('favourites') || '[]');
