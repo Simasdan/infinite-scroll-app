@@ -1,13 +1,31 @@
 @import '../variables/mediaBreakpoints.module';
 
 @mixin for-desktop-only {
-    @media (min-width: #{$min-desktop-width}px) {
+    @media (max-width: #{$max-desktop-width}px) {
+        @content;
+    }
+};
+
+@mixin for-desktopS-only {
+    @media (max-width: #{$max-desktopS-width}px) {
+        @content;
+    }
+};
+
+@mixin for-tabletL-only {
+    @media (max-width: #{$max-tabletL-width}px) {
         @content;
     }
 };
 
 @mixin for-tablet-only {
     @media (max-width: #{$max-tablet-width}px) {
+        @content;
+    }
+};
+
+@mixin for-tabletS-only {
+    @media (max-width: #{$max-tabletS-width}px) {
         @content;
     }
 };

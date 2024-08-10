@@ -12,6 +12,11 @@
             @include headline-L;
 
             color: $color-primary1;
+
+            @include for-tabletS-only {
+                font-size: 2.2rem;
+                line-height: 3rem;
+            }
         }
 
         .favouriteCards {

@@ -4,13 +4,43 @@
     position: relative;
 
     .imageCard {
-        width: 35rem;
-        height: 30rem;
+        width: 40rem;
+        height: 35rem;
         border-radius: $border-radius-small;
         overflow: hidden;
         border: 0.1rem solid $color-grey-1;
         box-shadow: $box-shadow-img;
         position: relative;
+
+        @include for-desktop-only {
+            width: 35rem;
+            height: 30rem;
+        }
+
+        @include for-desktopS-only {
+            width: 45rem;
+            height: 40rem;
+        }
+
+        @include for-tabletL-only {
+            width: 35rem;
+            height: 32rem;
+        }
+
+        @include for-tablet-only {
+            width: 28rem;
+            height: 23rem;
+        }
+
+        @include for-tabletS-only {
+            width: 40rem;
+            height: 35rem;
+        }
+
+        @include for-phone-only {
+            width: 35rem;
+            height: 30rem;
+        }
 
         @include flexbox-centered;
 

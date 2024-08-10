@@ -8,6 +8,10 @@
   padding: $spacing-S;
   position: relative;
 
+  @include for-phone-only {
+    padding: 1rem;
+  }
+
   .loadingIndicator {
     position: absolute;
     bottom: $spacing-S;
@@ -18,8 +22,13 @@
     background-color: $color-white;
     border-radius: $border-radius-button;
     z-index: 100;
+    margin: 0 $spacing-S;
 
     @include flexbox-centered;
+
+    @include for-phone-only {
+      margin: 0 1rem;
+    }
   }
 }
 
