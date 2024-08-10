@@ -8,6 +8,8 @@ The favourites route displays photos that have been marked as "Favoured." If no 
 
 As a front-end only application, favoured photos are stored in localStorage to persist across page reloads. Users can remove photos from their favourites from any of the presented routes.
 
+This project is hosted on GitHub. To view or work with the project, please clone the repository using your preferred code editor.
+
 To run the project, first install the required dependencies with:
 
 1. 'npm install'
